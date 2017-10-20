@@ -6,12 +6,13 @@
     "license": "MIT",
     "scripts": {
         "prestart": "babel-node buildScripts/startMessage.js",
-        "start": "npm-run-all --parallel security-check open:src",
+        "start": "npm-run-all --parallel security-check open:src lint:watch",
         "open:src": "babel-node buildScripts/srcExpressServer.js",
         "security-check": "nsp check",
         "localtunnel": "lt --port 3000",
         "share": "npm-run-all --parallel open:src localtunnel",
-        "webpack": "",
+        "lint": "esw webpack.config.* src buildScripts",
+        "lint:watch": "npm run lint -- --watch",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
@@ -55,6 +56,8 @@
         "open": "0.0.5",
         "rimraf": "2.5.4",
         "style-loader": "0.13.1",
+        "tslint": "^5.8.0",
+        "tslint-eslint-rules": "^4.1.1",
         "ts-loader": "^3.0.5",
         "typescript": "^2.5.3",
         "webpack": "1.13.2",
