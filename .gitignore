@@ -57,3 +57,5 @@ typings/
 # dotenv environment variables file
 .env
 
+# Temp addition. Remove when ready to complete.
+.idea/

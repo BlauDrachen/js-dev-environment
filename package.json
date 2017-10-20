@@ -1,6 +1,6 @@
 {
     "name": "js-dev-environment",
-    "version": "0.1.7",
+    "version": "0.1.8",
     "description": "This project acts as a boilerplate for Web Development",
     "author": "Nathaniel Riehl",
     "license": "MIT",
@@ -11,6 +11,7 @@
         "security-check": "nsp check",
         "localtunnel": "lt --port 3000",
         "share": "npm-run-all --parallel open:src localtunnel",
+        "webpack": "",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
@@ -54,6 +55,7 @@
         "open": "0.0.5",
         "rimraf": "2.5.4",
         "style-loader": "0.13.1",
+        "ts-loader": "^3.0.5",
         "typescript": "^2.5.3",
         "webpack": "1.13.2",
         "webpack-dev-middleware": "1.8.4",
