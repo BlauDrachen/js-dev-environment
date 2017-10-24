@@ -11,7 +11,10 @@
         "security-check": "nsp check",
         "localtunnel": "lt --port 3000",
         "share": "npm-run-all --parallel open:src localtunnel",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "lint:buildscripts": "tslint -c tslint.json -t verbose buildScripts/**/*.[jt]s?(x)",
+        "lint:src": "tslint -c tslint.json -t verbose src/**/*.[jt]s?(x)",
+        "lint": "npm-run-all --parallel lint:buildscripts lint:src"
     },
     "repository": {
         "type": "git",
