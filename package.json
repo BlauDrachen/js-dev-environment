@@ -6,13 +6,11 @@
     "license": "MIT",
     "scripts": {
         "prestart": "babel-node buildScripts/startMessage.js",
-        "start": "npm-run-all --parallel security-check open:src lint:watch",
+        "start": "npm-run-all --parallel security-check open:src",
         "open:src": "babel-node buildScripts/srcExpressServer.js",
         "security-check": "nsp check",
         "localtunnel": "lt --port 3000",
         "share": "npm-run-all --parallel open:src localtunnel",
-        "lint": "esw webpack.config.* src buildScripts",
-        "lint:watch": "npm run lint -- --watch",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
@@ -40,7 +38,6 @@
         "css-loader": "0.25.0",
         "eslint": "3.8.1",
         "eslint-plugin-import": "2.0.1",
-        "eslint-watch": "2.1.14",
         "express": "4.14.0",
         "extract-text-webpack-plugin": "1.0.1",
         "html-webpack-plugin": "2.22.0",
