@@ -1,19 +1,20 @@
 {
     "name": "js-dev-environment",
-    "version": "0.1.8",
+    "version": "0.1.10",
     "description": "This project acts as a boilerplate for Web Development",
     "author": "Nathaniel Riehl",
     "license": "MIT",
     "scripts": {
         "prestart": "babel-node buildScripts/startMessage.js",
-        "start": "npm-run-all --parallel security-check open:src",
+        "start": "npm-run-all --parallel security-check open:src lint:watch test:watch",
         "open:src": "babel-node buildScripts/srcExpressServer.js",
         "security-check": "nsp check",
         "localtunnel": "lt --port 3000",
         "share": "npm-run-all --parallel open:src localtunnel",
-        "test": "echo \"Error: no test specified\" && exit 1",
         "lint": "tslint -c tslint.json -t verbose webpack.config.* src/**/*.[tj]s buildScripts/*.[tj]s",
-        "lint:watch": "chokidar webpack.config.* src/**/*.[tj]s buildScripts/**/*.[tj]s -c \"npm run lint\" --initial --verbose"
+        "lint:watch": "chokidar webpack.config.* src/**/*.[tj]s buildScripts/**/*.[tj]s -c \"npm run lint\" --initial --verbose",
+        "test": "mocha --reporter nyan buildScripts/testSetup.js \"src/**/*.test.js\"",
+        "test:watch": "npm run test -- --watch"
     },
     "repository": {
         "type": "git",
