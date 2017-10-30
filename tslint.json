@@ -17,10 +17,8 @@
             ]
         },
         "object-literal-sort-keys": { "severity": "warning" },
-        "quotemark": {
-            "severity": "warning",
-            "options": [true, "double", "avoid-escape"]
-        },
+        "quotemark": false,
+        "whitespace": { "severity": "warning" },
         "trailing-comma": { "severity": "warning" }
     },
     "rules": {
