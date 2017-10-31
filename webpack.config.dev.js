@@ -4,9 +4,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 // tslint:disable:object-literal-sort-keys
 
 export default {
-    debug: true,
     devtool: 'inline-source-map',
-    noInfo: false,
     entry: [
         path.resolve(__dirname, 'src/index')
     ],

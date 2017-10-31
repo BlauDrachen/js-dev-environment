@@ -7,9 +7,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 // tslint:disable:object-literal-sort-keys
 
 export default {
-    debug: true,
     devtool: 'source-map',
-    noInfo: false,
     entry: {
         vendor: path.resolve(__dirname, 'src/vendor'),
         main: path.resolve(__dirname, 'src/index')
