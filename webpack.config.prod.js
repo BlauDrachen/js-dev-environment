@@ -7,6 +7,11 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 // tslint:disable:object-literal-sort-keys
 
 export default {
+    mode: 'development',
+    resolve: {
+      extensions: ['*', '.js', '.jsx', '.json']
+    },
+
     devtool: 'source-map',
     entry: {
         vendor: path.resolve(__dirname, 'src/vendor'),
@@ -18,17 +23,30 @@ export default {
         publicPath: '/',
         filename: '[name].[chunkhash].js'
     },
+    // Webpack 4 removed the commonsChunkPlugin. Use optimization.splitChunks instead.
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendor',
+                    chunks: 'all'
+                }
+            }
+        }
+    },
     plugins: [
         // Generate an external css file with a hash in the filename
-        new ExtractTextPlugin('[name].[contenthash].css'),
+        new ExtractTextPlugin('[name].[md5:contenthash:hex:20].css'),
 
         // Hash the files using MD5 so that their names change when the content changes.
         new WebpackMd5Hash(),
 
-        // Create separate bundle for vendor libs so they cache separately
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor'
-        }),
+        // No longer used fro webpack 4
+        // // Create separate bundle for vendor libs so they cache separately
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     name: 'vendor'
+        // }),
 
         // Create HTML file that includes reference to bundled JS
         new HtmlWebpackPlugin({
@@ -46,18 +64,12 @@ export default {
                 minifyCSS: true,
                 minifyURLs: true
             }
-        }),
-
-        // Eliminate Duplicate packages when generating bundle
-        new webpack.optimize.DedupePlugin(),
-
-        // Minify JS
-        new webpack.optimize.UglifyJsPlugin()
+        })
     ],
     module: {
-        loaders: [
-            {test: /\.js$/, exclude: /node_modules/, loaders: ['babel-loader']},
-            {test: /\.css$/, loader: ExtractTextPlugin.extract('css?sourceMap')}
+        rules: [
+            {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
+            {test: /\.css$/, use: ExtractTextPlugin.extract('css-loader?sourceMap')}
         ]
     }
 };
