@@ -1,3 +1,14 @@
 {
-    "presets": ["env"]
+    "presets": ["@babel/preset-env"],
+    "env": {
+        "production": {
+          "presets": [
+            ["@babel/preset-env", {
+              "es2015": {
+                "modules": false
+              }
+            }]
+          ]
+        }
+      }
 }
