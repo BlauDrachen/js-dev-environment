@@ -60,4 +60,5 @@ typings/
 .idea
 /src/api/db.json
 /dist
-.vs/
+.vs
+.vscode
